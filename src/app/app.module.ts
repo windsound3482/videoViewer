@@ -11,6 +11,10 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { Routes, RouterModule } from '@angular/router';
 import { FileViewerComponent } from './file-viewer/file-viewer.component';
+import {MatInputModule} from '@angular/material/input';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatButtonModule} from '@angular/material/button';
 function filepathMatcher(segments: UrlSegment[], 
   group: UrlSegmentGroup, 
   route: Route) : UrlMatchResult  | null {
@@ -48,6 +52,11 @@ const routes: Routes = [
     MatIconModule,
     MatToolbarModule,
     MatGridListModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatProgressSpinnerModule,
+    MatButtonModule,
     RouterModule.forRoot(routes, { useHash: false })
   ],
   providers: [],

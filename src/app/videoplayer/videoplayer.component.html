@@ -8,5 +8,65 @@
 </video>
 
 
+<div class="t-comments-box">
+	<div class="comment-title">
+	  Comments
+	</div>
+	
+	  <!-- <img [src]="url_1" alt="" /> -->
+	<mat-form-field class="example-form-field">
+	
+	<input matInput type="text" [(ngModel)]="value" placeholder="Kommentar hinzufügen">
+	
+	<button *ngIf="value" matSuffix mat-icon-button (click)="sendComment()" >
+		<mat-icon>send</mat-icon>
+	</button>
+	
+	</mat-form-field>
+
+	<div class="comment comment-level-1">
+	  <!-- <img [src]="url_2" alt="" /> -->
+	  <div  *ngFor="let comment of comments">
+		<div class="comment-label">
+		  <span class="comment-name">Anoym</span>
+		  <span class="comment-time"> {{comment.date}}</span>
+		</div>
+		<div class="comment-content">
+			{{comment.value}}
+			
+		</div>
+		<button matSuffix mat-icon-button  color="warn"  (click)="deleteComment(comment.date)" >
+			<mat-icon>delete_forever</mat-icon>
+		</button>
+		
+		<!-- <div class="comment-action">
+		  <span> <i class="far fa-heart"></i> Like (0)</span>
+		  <span> <i class="far fa-comment-alt"></i> Comment (0)</span>
+		</div> -->
+	  </div>
+	</div>
+	<!-- <div class="comment comment-level-2">
+	  <img [src]="url_3" alt="" />
+	  <div>
+		<div class="comment-label">
+		  <span class="comment-name">Kris Oberlin🌙</span>
+		  <span class="comment-time"> - 5 days ago</span>
+		</div>
+		<div class="comment-content">
+		  Lorem Ipsum is simply dummy.
+		</div>
+		<div class="comment-action">
+		  <span> <i class="far fa-heart"></i> Like (0)</span>
+		</div>
+	  </div>
+	</div> -->
+  </div>
+
+
+
+
+
+
+
 
 

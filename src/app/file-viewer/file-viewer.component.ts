@@ -92,6 +92,9 @@ export class FileViewerComponent implements AfterViewInit  {
   }
 
   deleteCurrentFile(element: FileElement){
+    this.service.deleteFile("Video",this.currentPath+element.name).then((data) => {
+      this.refreshFileMap('Video')
+    })
     
   }
 
@@ -103,13 +106,18 @@ export class FileViewerComponent implements AfterViewInit  {
     });
   }
 
+  uploadingImage=false
+
   uploadMultiMedia(file:any){
     let fileReader = new FileReader();
     fileReader.onload = (e) => {
+      this.uploadingImage=true;
       this.service.uploadFile(this.currentPath,this.currentPath+'/'+file.files[0].name,fileReader.result as string).then((data) => {
         this.refreshFileMap('Video')
+        this.uploadingImage=false
+        file.value='';
       })
-      file.value='';
+      
     }
     fileReader.readAsDataURL(file.files[0]);
     

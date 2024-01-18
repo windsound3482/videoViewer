@@ -32,10 +32,12 @@ export class FileExplorerComponent implements OnInit{
   @Output() checkoutFile = new EventEmitter<FileElement>();
   @Output() deleteCurrentFile = new EventEmitter<FileElement>();
 
-  pictureHeight=80
+  pictureHeight=200
   
 
-  ngOnChanges(changes: SimpleChanges): void {}
+  ngOnChanges(changes: SimpleChanges): void {
+    this.onBoxResize
+  }
 
 
   navigate(element: FileElement) {
@@ -63,15 +65,15 @@ export class FileExplorerComponent implements OnInit{
     }
   }
 
-  boxWidth=400
+  boxWidth=1920
 
   ngOnInit(): void {
-    this.boxWidth=window.innerWidth/100*41-40 ;
+    this.boxWidth=window.innerWidth ;
   }
 
   onBoxResize(box:any){
     console.log(box)
-    this.boxWidth=window.innerWidth/100*41-40 ;
+    this.boxWidth=window.innerWidth;
   }
 
 }
