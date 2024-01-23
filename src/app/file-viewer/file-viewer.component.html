@@ -1,5 +1,2 @@
 <app-file-explorer  class="HandlerFileFinder"  [type]="'Video'" [fileElements]="fileElements"  [path]="currentPath" [canNavigateUp]="canNavigateUp" 
 (navigatedDown)="navigateToFolder($event)" (navigatedUp)="navigateUp()" (checkoutFile)="checkoutFile($event)" (deleteCurrentFile)="deleteCurrentFile($event)"></app-file-explorer>
-<input #multimediaInput hidden="true" type="file" class="file-upload" (change)="uploadMultiMedia($event.target)">
-<button mat-icon-button  color="primary" *ngIf="currentPath!=''" (click)="multimediaInput.click()"><mat-icon>attach_file</mat-icon></button>
-<mat-spinner *ngIf="uploadingImage"></mat-spinner>

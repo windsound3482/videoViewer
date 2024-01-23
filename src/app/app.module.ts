@@ -35,7 +35,7 @@ function filepathMatcher(segments: UrlSegment[],
 }
 const routes: Routes = [
   { path: '', component: FileViewerComponent },
-  { matcher: filepathMatcher, component: VideoplayerComponent },
+  { path: 'Video/:id', component: VideoplayerComponent },
   { path: '**', component: FileViewerComponent }
 ];
 

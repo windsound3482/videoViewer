@@ -88,7 +88,12 @@ export class FileViewerComponent implements AfterViewInit  {
   }
 
   checkoutFile(element: FileElement){
-    this.router.navigate([this.currentPath+element.name]);
+    // this.router.navigate([this.currentPath+element.name]);
+    this.service.getVideo(this.currentPath+element.name,"").then((data) => {
+      console.log(data)
+      this.router.navigate(['Video',encodeURIComponent(data.data.PID)]);
+    })
+
   }
 
   deleteCurrentFile(element: FileElement){

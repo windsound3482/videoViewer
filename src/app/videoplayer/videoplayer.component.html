@@ -1,6 +1,6 @@
-
+<div *ngIf="videoname!=''">
 <video  
-	[src]='videopath' Autoplay="autoplay" autoplay="true"  controls
+	[src]='videopath' Autoplay="autoplay" autoplay="true" style="width: 70%;"  controls
 	>
 
 	<!-- <source  [src]="this.videopath" type='video/mp4' /> -->
@@ -61,6 +61,10 @@
 	  </div>
 	</div> -->
   </div>
+</div>
+<div *ngIf="videoname==''">
+	The Video not available
+</div>
 
 
 

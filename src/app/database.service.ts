@@ -40,6 +40,20 @@ export class DatabaseService {
     return data;
   }
 
+  async getVideo(name:string,PID:string){
+    const url: string = 'http://localhost:4200/api/multimedia/get/Video';
+    let response = await fetch(url,{
+      method: 'POST',
+      body: JSON.stringify({
+        "name":name,
+        'PID':PID
+      }),
+      headers: { "Content-Type": "application/json" }
+    });
+    let data: any = await response.json();
+    return data;
+  }
+
   async getFileStructure(type:string){
     const url: string = 'http://localhost:4200/api/multimedia/Video';
     let response = await fetch(url,{

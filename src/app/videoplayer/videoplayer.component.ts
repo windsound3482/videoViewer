@@ -17,11 +17,22 @@ export class VideoplayerComponent implements OnInit{
   isPlay: boolean = false;
   videopath:string="https://vjs.zencdn.net/v/oceans.mp4"
   videoname:string=""
+  PID:string=''
   ngOnInit(): void {
-    this.videopath = "http://localhost:4200/api/multimedia/Video/"+this.route.snapshot.paramMap.get('videopath') as string
-    this.videoname = "Video/"+this.route.snapshot.paramMap.get('videopath') as string
-    this.getComments();
-    console.log(this.videoname)
+    let id=this.route.snapshot.paramMap.get('id') as string
+    this.PID=decodeURIComponent(id)
+    console.log(decodeURIComponent(id))
+    this.service.getVideo("",this.PID).then((data) => {
+      console.log(data)
+      if (data.error)
+        return
+      
+      this.videopath = "http://localhost:4200/api/multimedia/"+data.data.fileName
+      this.videoname = data.data.fileName
+      this.getComments();
+      console.log(this.videoname)
+    })
+ 
   }
   toggleVideo() {
     this.videoplayer.nativeElement.play();

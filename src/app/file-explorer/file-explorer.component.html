@@ -3,38 +3,10 @@
       <mat-icon *ngIf="canNavigateUp" class="pointer" (click)="navigateUp()">arrow_back</mat-icon>
       <span style="margin-left: 8px">{{path || 'Files'}}</span>
       <span class="spacer"></span>
-      <button mat-button (click)="pictureHeight=pictureHeight-20" [disabled]="pictureHeight==20">-</button>
-      <button mat-button (click)="pictureHeight=pictureHeight+20" [disabled]="pictureHeight>1000">+</button>
-
   </mat-toolbar>
     
-    <div class="container" *ngIf="pictureHeight>20" fxFlex fxLayout="row" fxLayoutAlign="space-between stretch">
-      <div class="content" fxFlex fxLayout="row">
-        <mat-grid-list [cols]="boxWidth/pictureHeight*9/16"  [rowHeight]="pictureHeight+10" (window:resize)="onBoxResize($event)" fxFlex>
-          <mat-grid-tile *ngFor="let element of fileElements" [ngStyle]="{'width':pictureHeight+'px'}">
-          
-            <div fxLayout="column" xLayoutAlign="space-between center" (click)="navigate(element)"   (dblclick)="open(element)">
-          
-              <mat-icon color="primary"  *ngIf="element.isFolder"  [ngStyle]="{'font-size':pictureHeight+'px','height':pictureHeight-10+'px','width':pictureHeight+'px'}">folder</mat-icon>
-    
-              
-              <div *ngIf="!element.isFolder" style="text-align: center" >
-                <video  
-                  [src]='"api/multimedia/"+path+element.name' width="{{pictureHeight}}" controls
-                  >
-                </video>
-              
-              </div>
-            
-              <div style="text-align: center">{{element.name}}<button *ngIf="!element.isFolder" mat-icon-button  color="warn"  (click)="deleteFile(element)"><mat-icon>delete</mat-icon></button></div>
-              
-            </div>
-          </mat-grid-tile>
-        </mat-grid-list>
-      </div>
-    </div>
 
-    <div class="container" *ngIf="pictureHeight==20" fxFlex fxLayout="row" fxLayoutAlign="space-between stretch">
+    <div class="container"  fxFlex fxLayout="row" fxLayoutAlign="space-between stretch">
       <div class="content" fxFlex fxLayout="row">
         <mat-grid-list cols=1  [rowHeight]="pictureHeight" (window:resize)="onBoxResize($event)" fxFlex>
           <mat-grid-tile *ngFor="let element of fileElements" (click)="navigate(element)"(dblclick)="open(element)" >
@@ -44,7 +16,7 @@
                   [src]='"api/multimedia/"+path+element.name' width="{{pictureHeight}}"   controls
                   >
                 </video>
-              {{element.name}} <button *ngIf="!element.isFolder" mat-icon-button  color="warn"  (click)="deleteFile(element)"><mat-icon>delete</mat-icon></button>
+              {{element.name}} 
             </div>
           </mat-grid-tile>
         </mat-grid-list>
