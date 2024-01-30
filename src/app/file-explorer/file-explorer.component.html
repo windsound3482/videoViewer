@@ -3,20 +3,28 @@
       <mat-icon *ngIf="canNavigateUp" class="pointer" (click)="navigateUp()">arrow_back</mat-icon>
       <span style="margin-left: 8px">{{path || 'Files'}}</span>
       <span class="spacer"></span>
+
+      <mat-icon *ngIf="vertified==false" (click)="openDialog()">assignment_ind</mat-icon>
+   
   </mat-toolbar>
     
 
     <div class="container"  fxFlex fxLayout="row" fxLayoutAlign="space-between stretch">
       <div class="content" fxFlex fxLayout="row">
-        <mat-grid-list cols=1  [rowHeight]="pictureHeight" (window:resize)="onBoxResize($event)" fxFlex>
+        <mat-grid-list cols=1  rowHeight="130" fxFlex>
           <mat-grid-tile *ngFor="let element of fileElements" (click)="navigate(element)"(dblclick)="open(element)" >
             <div style="width: 100%; display: flex; align-items: flex-start;">
-              <mat-icon color="primary"  *ngIf="element.isFolder" [ngStyle]="{'font-size':pictureHeight+'px','height':pictureHeight+'px','width':pictureHeight+'px'}"  >folder</mat-icon>
-              <video *ngIf="!element.isFolder" 
-                  [src]='"api/multimedia/"+path+element.name' width="{{pictureHeight}}"   controls
+              &nbsp;
+              <mat-icon color="primary"  *ngIf="element.isFolder" [ngStyle]="{'font-size':'130px','height':'130px','width':'200px'}"  >folder</mat-icon>
+              <video preload="none" *ngIf="!element.isFolder" 
+                  [src]='"api/multimedia/"+path+element.name' width="200"   controls
                   >
                 </video>
-              {{element.name}} 
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <div>
+                  <h2>{{element.name}}</h2>
+                  <h3>{{element.description}}</h3>
+                </div>
             </div>
           </mat-grid-tile>
         </mat-grid-list>

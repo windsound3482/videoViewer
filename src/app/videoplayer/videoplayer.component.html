@@ -1,68 +1,96 @@
-<div *ngIf="videoname!=''">
-<video  
-	[src]='videopath' Autoplay="autoplay" autoplay="true" style="width: 70%;"  controls
-	>
 
-	<!-- <source  [src]="this.videopath" type='video/mp4' /> -->
+<div *ngIf="this.currentVideo.fileName!=''">
+	<div style="height: 60vh;width:100%">
+		<video  
+			Autoplay="autoplay" autoplay="true" style="height: 60vh;float:left;"  controls
+			>
 
-</video>
+			<source  [src]="this.videopath" type='video/mp4' />
 
+		</video>
+		<div class="t-comments-box" style="
+    	float:left ; width:25%">
+			<div class="comment-title">
+			Comments
+			</div>
+		
+		<!-- <img [src]="url_1" alt="" /> -->
+			<mat-form-field class="example-form-field">
+		
+				<input matInput type="text" [(ngModel)]="value" placeholder="Kommentar hinzufügen">
+				
+				<button *ngIf="value" matSuffix mat-icon-button (click)="sendComment()" >
+					<mat-icon>send</mat-icon>
+				</button>
+				
+			</mat-form-field>
 
-<div class="t-comments-box">
-	<div class="comment-title">
-	  Comments
-	</div>
-	
-	  <!-- <img [src]="url_1" alt="" /> -->
-	<mat-form-field class="example-form-field">
-	
-	<input matInput type="text" [(ngModel)]="value" placeholder="Kommentar hinzufügen">
-	
-	<button *ngIf="value" matSuffix mat-icon-button (click)="sendComment()" >
-		<mat-icon>send</mat-icon>
-	</button>
-	
-	</mat-form-field>
-
-	<div class="comment comment-level-1">
-	  <!-- <img [src]="url_2" alt="" /> -->
-	  <div  *ngFor="let comment of comments">
-		<div class="comment-label">
-		  <span class="comment-name">Anoym</span>
-		  <span class="comment-time"> {{comment.date}}</span>
+			<div class="comment comment-level-1">
+			<!-- <img [src]="url_2" alt="" /> -->
+				<div  *ngFor="let comment of comments">
+					<div class="comment-label">
+					<span class="comment-name">Anoym</span>
+					<span class="comment-time"> {{comment.date}}</span>
+					</div>
+					<div class="comment-content">
+						{{comment.value}}
+						
+					</div>
+					<button matSuffix mat-icon-button  color="warn"  (click)="deleteComment(comment.date)" >
+						<mat-icon>delete_forever</mat-icon>
+					</button>
+					
+					<!-- <div class="comment-action">
+					<span> <i class="far fa-heart"></i> Like (0)</span>
+					<span> <i class="far fa-comment-alt"></i> Comment (0)</span>
+					</div> -->
+				</div>
+				
+			<!-- <div class="comment comment-level-2">
+			<img [src]="url_3" alt="" />
+			<div>
+				<div class="comment-label">
+				<span class="comment-name">Kris Oberlin🌙</span>
+				<span class="comment-time"> - 5 days ago</span>
+				</div>
+				<div class="comment-content">
+				Lorem Ipsum is simply dummy.
+				</div>
+				<div class="comment-action">
+				<span> <i class="far fa-heart"></i> Like (0)</span>
+				</div>
+			</div>
+			</div> -->
+			</div>
+		
 		</div>
-		<div class="comment-content">
-			{{comment.value}}
-			
-		</div>
-		<button matSuffix mat-icon-button  color="warn"  (click)="deleteComment(comment.date)" >
-			<mat-icon>delete_forever</mat-icon>
+		<button matSuffix mat-icon-button *ngIf="vertified==false" (click)="openDialog()" style="float:right">
+			<mat-icon>assignment_ind</mat-icon>
 		</button>
 		
-		<!-- <div class="comment-action">
-		  <span> <i class="far fa-heart"></i> Like (0)</span>
-		  <span> <i class="far fa-comment-alt"></i> Comment (0)</span>
-		</div> -->
-	  </div>
+	
+		<mat-icon *ngIf="vertified==true" color="warn" style="float:right">assignment_turned_in</mat-icon>
 	</div>
-	<!-- <div class="comment comment-level-2">
-	  <img [src]="url_3" alt="" />
-	  <div>
-		<div class="comment-label">
-		  <span class="comment-name">Kris Oberlin🌙</span>
-		  <span class="comment-time"> - 5 days ago</span>
-		</div>
-		<div class="comment-content">
-		  Lorem Ipsum is simply dummy.
-		</div>
-		<div class="comment-action">
-		  <span> <i class="far fa-heart"></i> Like (0)</span>
-		</div>
-	  </div>
-	</div> -->
-  </div>
+	<br/>
+	<div style="float:none">
+		<h1 >{{fileName}}</h1>
+
+		<mat-form-field class="example-form-field" width="600">
+			<mat-label>Description</mat-label>
+			<textarea matInput type="text" [(ngModel)]="this.currentVideo.description" placeholder="Kommentar hinzufügen" [disabled]="!vertified">
+			</textarea>
+			<button *ngIf="this.currentVideo.description && vertified" matSuffix mat-icon-button (click)="updateDescription()" >
+				<mat-icon>send</mat-icon>
+			</button>
+			
+		</mat-form-field>
+	</div>
 </div>
-<div *ngIf="videoname==''">
+	
+
+
+	
+<div *ngIf="this.currentVideo.fileName==''">
 	The Video not available
 </div>
 

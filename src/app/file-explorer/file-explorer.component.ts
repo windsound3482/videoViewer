@@ -1,10 +1,12 @@
 import { Component, Input, SimpleChanges, OnInit, Output, EventEmitter } from '@angular/core';
-
+import { PasswordDialogComponent } from '../dialog/password-dialog/password-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 
 interface FileElement {
   id?: string;
+  description?:string;
   isFolder: boolean;
   name: string;
   parent: string;
@@ -17,7 +19,7 @@ interface FileElement {
 })
 
 export class FileExplorerComponent implements OnInit{
-  constructor() {}
+  constructor(public dialog: MatDialog) {}
 
   @Input() fileElements: FileElement[]=[];
   @Input() canNavigateUp: boolean=false;
@@ -32,11 +34,10 @@ export class FileExplorerComponent implements OnInit{
   @Output() checkoutFile = new EventEmitter<FileElement>();
   @Output() deleteCurrentFile = new EventEmitter<FileElement>();
 
-  pictureHeight=200
+  pictureHeight=170
   
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.onBoxResize
   }
 
 
@@ -70,10 +71,18 @@ export class FileExplorerComponent implements OnInit{
   ngOnInit(): void {
     this.boxWidth=window.innerWidth ;
   }
+  vertified=false
 
-  onBoxResize(box:any){
-    console.log(box)
-    this.boxWidth=window.innerWidth;
+  openDialog() {
+    const dialogRef = this.dialog.open(PasswordDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      if (result)
+        this.vertified=true;
+    });
   }
+
+ 
 
 }

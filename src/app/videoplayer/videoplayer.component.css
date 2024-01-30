@@ -1,3 +1,7 @@
+mat-form-field {
+  width: 70%;
+  height:20%;
+}
 .t-comments-box {
     padding: 0.5rem;
     .comment-title {

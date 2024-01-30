@@ -93,6 +93,22 @@ export class DatabaseService {
     return data;
   }
 
+  async uploadDescription(pid:string,description:string){
+  
+    const url: string = 'http://localhost:4200/api/multimedia/updateOppo/Video';
+    let response = await fetch(url,{
+      method: 'POST',
+      body: JSON.stringify({
+        'oppo':"description",
+        'pid':pid,
+        "oppoValue":description
+      }),
+      headers: { "Content-Type": "application/json" }
+    });
+    let data: any = await response.json();
+    return data;
+  }
+
   async deleteComment(filepath:string,date:string){
   
     const url: string = 'http://localhost:4200/api/multimedia/delete/VideoComment';
@@ -107,5 +123,20 @@ export class DatabaseService {
     let data: any = await response.json();
     return data;
   }
+
+  async vertifyPassword(password:string){
+  
+    const url: string = 'http://localhost:4200/api/password';
+    let response = await fetch(url,{
+      method: 'POST',
+      body: JSON.stringify({
+        'password':password,
+      }),
+      headers: { "Content-Type": "application/json" }
+    });
+    let data: any = await response.json();
+    return data;
+  }
+
 
 }

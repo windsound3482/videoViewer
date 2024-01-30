@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 export interface FileElement {
   id?: string;
+  description?:string;
   isFolder: boolean;
   name: string;
   parent: string;

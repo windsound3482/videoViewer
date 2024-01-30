@@ -15,6 +15,9 @@ import {MatInputModule} from '@angular/material/input';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatButtonModule} from '@angular/material/button';
+import { PasswordDialogComponent } from './dialog/password-dialog/password-dialog.component';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+
 function filepathMatcher(segments: UrlSegment[], 
   group: UrlSegmentGroup, 
   route: Route) : UrlMatchResult  | null {
@@ -44,7 +47,8 @@ const routes: Routes = [
     AppComponent,
     VideoplayerComponent,
     FileExplorerComponent,
-    FileViewerComponent
+    FileViewerComponent,
+    PasswordDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +61,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatProgressSpinnerModule,
     MatButtonModule,
+    MatDialogModule,
     RouterModule.forRoot(routes, { useHash: false })
   ],
   providers: [],
