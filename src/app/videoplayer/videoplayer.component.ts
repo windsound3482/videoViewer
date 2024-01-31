@@ -82,8 +82,8 @@ export class VideoplayerComponent implements OnInit{
     });
   }
 
-  updateDescription(){
-    this.service.uploadDescription(this.currentVideo.PID,this.currentVideo.description).then((data)=>{
+  updateOppo(oppo:string,oppoValue:string){
+    this.service.uploadOppo(oppo,this.currentVideo.PID,oppoValue).then((data)=>{
       this.vertified=false;
     })
   }

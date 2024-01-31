@@ -93,15 +93,15 @@ export class DatabaseService {
     return data;
   }
 
-  async uploadDescription(pid:string,description:string){
+  async uploadOppo(oppo:string,pid:string,oppoValue:string){
   
     const url: string = 'http://localhost:4200/api/multimedia/updateOppo/Video';
     let response = await fetch(url,{
       method: 'POST',
       body: JSON.stringify({
-        'oppo':"description",
+        'oppo':oppo,
         'pid':pid,
-        "oppoValue":description
+        "oppoValue":oppoValue
       }),
       headers: { "Content-Type": "application/json" }
     });

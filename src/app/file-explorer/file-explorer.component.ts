@@ -10,6 +10,8 @@ interface FileElement {
   isFolder: boolean;
   name: string;
   parent: string;
+  timestamp?:string;
+  source?:string;
 }
 
 @Component({

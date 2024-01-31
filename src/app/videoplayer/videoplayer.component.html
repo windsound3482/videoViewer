@@ -73,17 +73,37 @@
 	</div>
 	<br/>
 	<div style="float:none">
-		<h1 >{{fileName}}</h1>
-
-		<mat-form-field class="example-form-field" width="600">
+		<mat-form-field class="descriptionField" width="60%">
 			<mat-label>Description</mat-label>
 			<textarea matInput type="text" [(ngModel)]="this.currentVideo.description" placeholder="Kommentar hinzufügen" [disabled]="!vertified">
 			</textarea>
-			<button *ngIf="this.currentVideo.description && vertified" matSuffix mat-icon-button (click)="updateDescription()" >
+			<button *ngIf="this.currentVideo.description && vertified" matSuffix mat-icon-button (click)="updateOppo('description',this.currentVideo.Description)" >
 				<mat-icon>send</mat-icon>
 			</button>
 			
 		</mat-form-field>
+		<div class="smallInputField">
+			<mat-form-field  >
+				<mat-label>Timestamp</mat-label>
+				<input matInput type="text" [(ngModel)]="this.currentVideo.timestamp" placeholder="Timestamp hinzufügen" [disabled]="!vertified">
+			
+				<button *ngIf="this.currentVideo.timestamp && vertified" matSuffix mat-icon-button (click)="updateOppo('timestamp',this.currentVideo.timestamp)" >
+					<mat-icon>send</mat-icon>
+				</button>
+				
+			</mat-form-field>
+			<mat-form-field >
+				<mat-label>Source</mat-label>
+				<input matInput type="text" [(ngModel)]="this.currentVideo.source" placeholder="Source hinzufügen" [disabled]="!vertified">
+				
+				<button *ngIf="this.currentVideo.source && vertified" matSuffix mat-icon-button (click)="updateOppo('source',this.currentVideo.source)" >
+					<mat-icon>send</mat-icon>
+				</button>
+				
+			</mat-form-field>
+		</div>
+		
+		<h3>{{fileName}}</h3>
 	</div>
 </div>
 	

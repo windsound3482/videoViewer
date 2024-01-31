@@ -12,20 +12,24 @@
     <div class="container"  fxFlex fxLayout="row" fxLayoutAlign="space-between stretch">
       <div class="content" fxFlex fxLayout="row">
         <mat-grid-list cols=1  rowHeight="130" fxFlex>
-          <mat-grid-tile *ngFor="let element of fileElements" (click)="navigate(element)"(dblclick)="open(element)" >
+          <mat-grid-tile *ngFor="let element of fileElements"  >
             <div style="width: 100%; display: flex; align-items: flex-start;">
               &nbsp;
-              <mat-icon color="primary"  *ngIf="element.isFolder" [ngStyle]="{'font-size':'130px','height':'130px','width':'200px'}"  >folder</mat-icon>
-              <video preload="none" *ngIf="!element.isFolder" 
-                  [src]='"api/multimedia/"+path+element.name' width="200"   controls
-                  >
-                </video>
+              <mat-icon color="primary"  *ngIf="element.isFolder" [ngStyle]="{'font-size':'130px','height':'130px','width':'200px'}"  (click)="navigate(element)">folder</mat-icon>
+              <div (click)="navigate(element)">
+                <video preload="none" *ngIf="!element.isFolder" 
+                    [src]='"api/multimedia/"+path+element.name+"#t=0.1"' width="200"   controls
+                    >
+                  </video>
+              </div>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <div>
-                  <h2>{{element.name}}</h2>
-                  <h3>{{element.description}}</h3>
+                <div >
+                  <b>{{element.name}}</b>
+                  <br/>
+                  <b *ngIf="element.timestamp or element.source">{{element.timestamp}} | {{element.source}}</b>
+                  <p>{{element.description}}</p>
                 </div>
-            </div>
+           </div> 
           </mat-grid-tile>
         </mat-grid-list>
       </div>

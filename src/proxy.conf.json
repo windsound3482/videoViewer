@@ -3,7 +3,8 @@
     "/api/*": {
         "target": "https://archive.projects.bayern",
         "secure": true,
-        "changeOrigin": true
+        "changeOrigin": true,
+        "timeout": 360000
     }
 }
 

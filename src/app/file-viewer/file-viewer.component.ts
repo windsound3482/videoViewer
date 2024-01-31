@@ -8,6 +8,8 @@ export interface FileElement {
   isFolder: boolean;
   name: string;
   parent: string;
+  timestamp?:string;
+  source?:string;
 }
 @Component({
   selector: 'app-file-viewer',

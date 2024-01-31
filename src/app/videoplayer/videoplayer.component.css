@@ -1,6 +1,11 @@
-mat-form-field {
+.descriptionField {
   width: 70%;
   height:20%;
+}
+
+.smallInputField mat-form-field {
+  margin-left: 8px;
+  width: 30%;
 }
 .t-comments-box {
     padding: 0.5rem;
